@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,9 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 
 class ContactAdapter(private val context: Context, private val contactList: List<Contact>) :
     RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+
+    private var lastPosition = -1;
+
     inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val photoImageView: ImageView = itemView.findViewById(R.id.contactPhoto)
         val nameTextView: TextView = itemView.findViewById(R.id.contactName)
@@ -32,14 +36,22 @@ class ContactAdapter(private val context: Context, private val contactList: List
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact = contactList.get(position)
-        holder.nameTextView.text=contact.name
-        holder.phoneTextView.text=contact.phoneNumber
+        holder.nameTextView.text = contact.name
+        holder.phoneTextView.text = contact.phoneNumber
         // Load photo using Glide
         Glide.with(context)
             .load(contact.photoUri)
             .transform(CircleCrop())
             .placeholder(R.drawable.default_contact_photo) // Placeholder image
             .into(holder.photoImageView)
+
+        setAnimation(holder.itemView,position)
+
+    }
+
+    fun setAnimation(view: View, position: Int) {
+         val slideIn= AnimationUtils.loadAnimation(context,android.R.anim.slide_in_left)
+        view.animation=slideIn
 
     }
 }
