@@ -7,11 +7,19 @@ import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 
 class MyCustomDialog(
     context: Context,
+    val title:String,
+    val name:String="",
+    val phone:String="",
     private val onAddContact: (String, String) -> Unit
 ) : Dialog(context) {
+
+    lateinit var nameEditText: EditText
+    lateinit var phoneEditText: EditText
+    lateinit var tvTitle: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +33,16 @@ class MyCustomDialog(
             WindowManager.LayoutParams.WRAP_CONTENT
         )
 
-
         // Initialize UI elements
-        val nameEditText: EditText = view.findViewById(R.id.nameEditText)
-        val phoneEditText: EditText = view.findViewById(R.id.phoneEditText)
+        tvTitle = view.findViewById(R.id.dialogTitle)
+        nameEditText = view.findViewById(R.id.nameEditText)
+        phoneEditText = view.findViewById(R.id.phoneEditText)
         val doneButton: Button = view.findViewById(R.id.doneButton)
         val cancelButton: Button = view.findViewById(R.id.cancelButton)
+
+        tvTitle.text=title
+        nameEditText.setText(name)
+        phoneEditText.setText(phone)
 
         // Handle Done button click
         doneButton.setOnClickListener {
@@ -52,4 +64,6 @@ class MyCustomDialog(
             dismiss() // Close the dialog without any action
         }
     }
+
+
 }

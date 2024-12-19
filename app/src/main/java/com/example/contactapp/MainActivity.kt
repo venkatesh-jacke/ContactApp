@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addContact() {
-        val dialog = MyCustomDialog(this) { name, phone ->
+        val dialog = MyCustomDialog(this,"Add Contact") { name, phone ->
             val contact = Contact(
                 name,
                 phone,
