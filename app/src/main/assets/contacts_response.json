@@ -1,0 +1,17 @@
+[
+  {
+    "name": "10th Rollno",
+    "phoneNumber": "1962458",
+    "photoUri": "android.resource://com.example.contactapp/drawable/default_contact_photo"
+  },
+  {
+    "name": "AARU",
+    "phoneNumber": "94452 95653",
+    "photoUri": "android.resource://com.example.contactapp/drawable/default_contact_photo"
+  },
+  {
+    "name": "AC Mechanic",
+    "phoneNumber": "9884911366",
+    "photoUri": "content://com.android.contacts/contacts/17614/photo"
+  }
+]
