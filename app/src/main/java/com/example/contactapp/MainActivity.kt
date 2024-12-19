@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var contactAdapter: ContactAdapter
     private lateinit var progressBar: ProgressBar
-    private lateinit var fab: FloatingActionButton
     private var contactList: ArrayList<Contact> = ArrayList() // ArrayList to hold Contact objects
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -50,26 +49,10 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
         recyclerView = findViewById(R.id.recyclerView)
         progressBar = findViewById(R.id.progressBar)
-        fab = findViewById(R.id.fab)
         recyclerView.layoutManager = LinearLayoutManager(this)
         contactAdapter = ContactAdapter(this, contactList) // Pass the contactList to the adapter
         recyclerView.adapter = contactAdapter
-        fab.setOnClickListener {
-            addContact()
-        }
-    }
-
-    private fun addContact() {
-        val dialog = MyCustomDialog(this) { name, phone ->
-            val contact = Contact(
-                name,
-                phone,
-                "android.resource://${packageName}/drawable/default_contact_photo"
-            )
-            contactList.add(contact)
-            contactAdapter.notifyDataSetChanged()
-        }
-        dialog.show()
+        recyclerView.adapter = contactAdapter
     }
 
     private fun checkAndRequestPermission() {
