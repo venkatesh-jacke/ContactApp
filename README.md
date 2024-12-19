@@ -111,12 +111,3 @@ The app requires the following permissions:
 READ_CONTACTS: To fetch the device’s contacts.
 
 INTERNET: For Glide to fetch images if needed.
-
-Libraries Used
-
-Glide: Image loading and transformations.
-
-RecyclerView: Displaying a scrollable list of items.
-
-Material Components: For a modern UI/UX design.
-
